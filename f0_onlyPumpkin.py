@@ -1,3 +1,5 @@
+# Update Script for 15x15
+
 def correct_ground_for(crop):
     if crop in (Entities.Tree, Entities.Grass):
         return Grounds.Grassland
@@ -34,13 +36,13 @@ while True:
     if get_entity_type() == Entities.Treasure:
         harvest()
 
-    elif y in (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10):
+    elif y in (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14):
         if can_harvest() or Entities.Dead_Pumpkin:
             handle_tile(Entities.Pumpkin)
         move_next()
 
 
-    elif y == 11:
+    elif y == 15:
         if can_harvest() or Entities.Dead_Pumpkin:
             handle_tile(Entities.Pumpkin)
         move(East)
