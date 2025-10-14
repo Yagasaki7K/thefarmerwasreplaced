@@ -39,7 +39,7 @@ while True:
     if get_entity_type() == Entities.Treasure:
         harvest()
 
-    elif y in (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1):
+    elif y in (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14):
         if can_harvest() or Entities.Dead_Pumpkin:
             handle_tile(Entities.Pumpkin)
         move_next()
