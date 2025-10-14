@@ -1,9 +1,18 @@
 # A better version of main.py (12x12), and fixed every bugs and errors.
+# Filtering a correct ground for the seed.
+
+def correct_ground_for(crop):
+    if crop in (Entities.Tree, Entities.Grass):
+        return Grounds.Grassland
+    return Grounds.Soil
+
+
 def handle_tile(crop, replant_dead=False):
     if can_harvest():
         harvest()
 
-    if get_ground_type() != Grounds.Soil:
+    correct_ground = correct_ground_for(crop)
+    if get_ground_type() != correct_ground:
         till()
 
     if replant_dead and Entities.Dead_Pumpkin:
@@ -28,14 +37,11 @@ while True:
 
     elif y in (2, 3, 9, 10):
         if can_harvest() or Entities.Dead_Pumpkin:
-            handle_tile(Entities.Pumpkin)
+            handle_tile(Entities.Pumpkin, replant_dead=True)
         move_next()
 
     elif y == 4:
-        harvest()
-        plant(Entities.Grass)
-        if Items.Water != 0:
-            use_item(Items.Water)
+        handle_tile(Entities.Grass)
         move_next()
 
     elif y in (5, 6):
@@ -52,12 +58,7 @@ while True:
         move_next()
 
     elif y == 11:
-        harvest()
-        if get_ground_type() != Grounds.Soil:
-            till()
-        plant(Entities.Grass)
-        if Items.Water != 0:
-            use_item(Items.Water)
+        handle_tile(Entities.Grass)
         move(East)
         move(North)
         
