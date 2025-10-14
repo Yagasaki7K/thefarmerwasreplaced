@@ -1,4 +1,7 @@
 # Update to Added Drones
+# Clear before start
+
+clear()
 
 def TransformToMaze():
     plant(Entities.Bush)
@@ -7,12 +10,11 @@ def TransformToMaze():
 
 def drone_function():
     move(North)
-    do_a_flip()
     harvestMaze()
 
 def harvestMaze():
     while True:
-        if get_entity_type() == Entities.Grass:
+        if get_entity_type() != Entities.Hedge:
             TransformToMaze()
             
         if get_entity_type() == Entities.Treasure:
