@@ -1,5 +1,6 @@
 # Update to Added Drones
 # Clear before start
+# Minimal world seed
 
 clear()
 
@@ -7,6 +8,7 @@ def TransformToMaze():
     plant(Entities.Bush)
     n_substance = get_world_size() * num_unlocked(Unlocks.Mazes)
     use_item(Items.Weird_Substance, n_substance)
+    set_world_size(3)
 
 def drone_function():
     move(North)
@@ -58,6 +60,7 @@ def harvestMaze():
                     index = (index - 1) % 4
                 steps = steps + 1
             if get_entity_type() == Entities.Treasure:
+                harvest()
                 next_pos = measure()
                 if next_pos:
                     x, y = next_pos
