@@ -2,6 +2,8 @@
 # Filtering a correct ground for the seed.
 # Added Fertilizer
 # Added Pumpkin 4x12
+# Update Farming for 15x15
+# Fix some issues with dead pumpkins
 
 def correct_ground_for(crop):
     if crop in (Entities.Tree, Entities.Grass):
@@ -10,6 +12,9 @@ def correct_ground_for(crop):
 
 
 def handle_tile(crop, replant_dead=False):
+    if Items.Weird_Substance:
+        use_item(Items.Weird_Substance)
+        
     if can_harvest():
         harvest()
 
@@ -17,15 +22,15 @@ def handle_tile(crop, replant_dead=False):
     if get_ground_type() != correct_ground:
         till()
 
-    if replant_dead and Entities.Dead_Pumpkin:
+    if Entities.Dead_Pumpkin:
         plant(crop)
     else:
         plant(crop)
 
-    if Items.Water != 0:
+    if Items.Water:
         use_item(Items.Water)
         
-    if Items.Fertilizer != 0:
+    if Items.Fertilizer:
         use_item(Items.Fertilizer)
 
 def move_next():
@@ -36,30 +41,28 @@ while True:
     if get_entity_type() == Entities.Treasure:
         harvest()
 
-    if y in (9, 10):
+    if y in (9, 10, 14):
         handle_tile(Entities.Carrot)
         move_next()
-        unlock(Unlocks.Speed)
 
     elif y in (0, 1, 2, 3):
         if can_harvest() or Entities.Dead_Pumpkin:
             handle_tile(Entities.Pumpkin)
         move_next()
 
-    elif y == 4:
+    elif y in (4, 11):
         handle_tile(Entities.Grass)
         move_next()
 
-    elif y in (5, 6):
-        if can_harvest():
-            handle_tile(Entities.Tree)
+    elif y in (5, 6, 12):
+        handle_tile(Entities.Tree)
         move_next()
 
-    elif y in (7, 8):
+    elif y in (7, 8, 13):
         handle_tile(Entities.Cactus)
         move_next()
 
-    elif y == 11:
+    elif y == 15:
         handle_tile(Entities.Sunflower)
         move(East)
         move(North)
