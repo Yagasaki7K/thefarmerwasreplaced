@@ -1,5 +1,7 @@
 # A better version of main.py (12x12), and fixed every bugs and errors.
 # Filtering a correct ground for the seed.
+# Added Fertilizer
+# Added Pumpkin 4x12
 
 def correct_ground_for(crop):
     if crop in (Entities.Tree, Entities.Grass):
@@ -22,22 +24,26 @@ def handle_tile(crop, replant_dead=False):
 
     if Items.Water != 0:
         use_item(Items.Water)
-
+        
+    if Items.Fertilizer != 0:
+        use_item(Items.Fertilizer)
 
 def move_next():
     move(North)
 
-
 while True:
     y = get_pos_y()
+    if get_entity_type() == Entities.Treasure:
+        harvest()
 
-    if y in (0, 1):
+    if y in (9, 10):
         handle_tile(Entities.Carrot)
         move_next()
+        unlock(Unlocks.Speed)
 
-    elif y in (2, 3, 9, 10):
+    elif y in (0, 1, 2, 3):
         if can_harvest() or Entities.Dead_Pumpkin:
-            handle_tile(Entities.Pumpkin, replant_dead=True)
+            handle_tile(Entities.Pumpkin)
         move_next()
 
     elif y == 4:
@@ -49,16 +55,12 @@ while True:
             handle_tile(Entities.Tree)
         move_next()
 
-    elif y == 7:
-        handle_tile(Entities.Sunflower)
-        move_next()
-
-    elif y == 8:
+    elif y in (7, 8):
         handle_tile(Entities.Cactus)
         move_next()
 
     elif y == 11:
-        handle_tile(Entities.Grass)
+        handle_tile(Entities.Sunflower)
         move(East)
         move(North)
         
