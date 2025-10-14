@@ -4,6 +4,7 @@
 # Added Pumpkin 4x12
 # Update Farming for 15x15
 # Fix some issues with dead pumpkins
+# Removed Treasure - It belongs to another script now
 
 def correct_ground_for(crop):
     if crop in (Entities.Tree, Entities.Grass):
@@ -38,8 +39,6 @@ def move_next():
 
 while True:
     y = get_pos_y()
-    if get_entity_type() == Entities.Treasure:
-        harvest()
 
     if y in (9, 10, 14):
         handle_tile(Entities.Carrot)
