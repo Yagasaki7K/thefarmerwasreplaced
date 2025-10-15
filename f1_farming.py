@@ -110,9 +110,6 @@ def _row_plant(row, entity, fix_only=False, exclude=None):
         for col in range(COLS):
             go_to(col, row)
             
-            if exclude != None and exclude():
-                continue
-            
             if fix_only and can_harvest() and get_entity_type() == entity:
                 continue
                 
@@ -349,8 +346,6 @@ def cactus():
     
     go_to(0, 0)
     harvest()
-                
-    walk(harvest, go_to, drone)
 
 
 last_move = None
@@ -608,7 +603,12 @@ def dinosaur2():
         if measure() == None:
             harvest()
         x, y = measure()
-      
+        
+    
+
+
+# while num_items(Items.Bone) < 3348892800:
+    #dinosaur2()
     
     
 
