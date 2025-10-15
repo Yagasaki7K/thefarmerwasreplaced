@@ -1,6 +1,4 @@
 # set_world_size(8)
-
-
 set_world_size(16)
 #set_world_size(32)
 
@@ -603,14 +601,6 @@ def dinosaur2():
         if measure() == None:
             harvest()
         x, y = measure()
-        
-    
-
-
-# while num_items(Items.Bone) < 3348892800:
-    #dinosaur2()
-    
-    
 
 while True:
     for (n, func, hat) in items:
